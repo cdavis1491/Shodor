@@ -1,0 +1,55 @@
+
+Introduction to Shared-Memroy:
+    1--> Say what we will do today
+    2--> Basic computer archeticture
+    2--> multi-core machines
+    3--> Multi-processor machine (NUMA Nodes)
+    4--> What is a shared memory system?
+    5--> Process Vs. Thread
+        -> Whats address space?
+    6--> Finally Whats OpenMP?
+    7--> Fork-Join Model:
+    8--> OpenMP Directives
+        -> omp parallel direcive
+        -> example: omp_greetings.c
+    
+    9--> OpenMP private clause:
+        -> What is a clause: modify the behave of directives
+        -> example: omp_greetings.c
+        -> what happense if you try to print my_id, after the parallel block
+    
+    10-TD-> More about OpenMP data scopes
+        -> different data control clauses exist:
+            -> private, shared, default, firstprivate, lastprivate, threadprivate
+        -> example: omp_data_scoping.c
+    
+    12-TD-> OpenMP runtime library routines
+        -> omp_get_thread_num();  ->  omp_get_num_threads();
+        -> omp_set_num_threads(); ->  omp_get_wtime()
+        -> omp_get_num_procs(void); 
+        -> omp_get_num_devices(void); //Returns the number of target devices.
+        -> omp_get_wtick(void); // Gets the timer precision, i.e., the number of seconds between two successive clock ticks.
+        -> examples: omp_functions.c
+    
+    13-TD-> OpenMP work load scheduling
+        -> example: omp_compute_pi.c
+        -> What are Schedule clause:
+            -> schdule(type,chunk_size)
+                -> type: static, dynamic, auto, runtime
+                -> chunk_size: compute the load balance
+            -> nowait clause
+            -> use runtime library to see time different in different loop ordering
+
+    14-TD-> OpenMP Syncronization.
+        -> example: omp_critical.c   //compute pi, one sum update at a time.
+        -> omp critical directive
+        -> omp atomic
+        -> reduction(+:sum)
+    
+    15-TD-> More OpenMP Environment variables:
+        -> OMP_NUM_THREADS, OMP_SCHEDUEL(TYPE, CHUNK_SIZE)
+        -> OMP_NOWAIT
+        -> nested
+
+
+

@@ -1,0 +1,37 @@
+
+Introduction to C:
+    1--> What is C
+    2--> First C program
+        -> Example: [ greetings.c ]
+    3--> Data types and variables in C
+        -> Example: [ variables.c ]
+    4--> Conditionals (if and else):
+        -> testing/comparison/conditions
+        -> Example: [ conditionals.c ]
+    5--> Functions in C:
+        -> Dividing code to sub-block of codes
+        -> Reusing subblocks rather than rewriting them
+        -> Example: [ functions.c ]
+    6--> Arrays and for loop in C:
+        -> grouping variables of same data type, elements, etc under one name
+        -> Arrays memory layout
+        -> array size and initializations ( int arrayA[ 5 ] = {1,2,3,4,5};)
+        -> How can I print array elements without writing printf 5 times.
+            -> by using for loop: for(i=0;i<5;i++){printf("%d",arrayA[i]);}
+        -> Static Arrays
+        -> Example: [ for_loop.c ]
+    7--> Static 2D arrays in C:
+        -> Why use 2D arrays
+        -> syntax: arrayA[2][4] = { {1,2,3,4}, {5,6,7,8} };
+        -> Matrix
+        -> Nested For loop:
+        -> Example: [ arrays.c ]
+    8--> Pointers and Arrays in C:
+        -> What is a pointer? (a variable holds the address of another variable)
+        -> why use pointers?
+        -> Dynamically allocating arrays with pointers
+        -> Example: [ pointers_and_arrays.c ]
+    --> Wrap UP:
+        -> Example: [ pointers_and_arrays.c ]
+        -> Exercise: [ compute_pi.c ]
+            -> 

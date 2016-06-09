@@ -1,0 +1,114 @@
+      .version 3.1
+      .target sm_35
+      .address_size 64
+
+      // Cray C : Version 8.4.2  (u84059c84192i84310p84456a84012z84456)
+
+      .file	1	"vect_add.c"
+
+      .entry vector_add$ck_L53_1(
+               .param .s64 $$arg_ptr_acc_vectorB_T7_T51,
+               .param .s64 $$arg_ptr_acc_vectorA_T10_T52 )
+      {
+      .reg .pred %p<3>;
+      .reg .b64  %bd<2>;
+      .reg .s32  %s<7>;
+      .reg .s64  %sd<11>;
+      .reg .f64  %fd<3>;
+      //
+      .loc                 1  53  0
+      .loc                 1  53  0
+      cvt.s32.u32          %s2, %ntid.x;               // vect_add.c:53 : $$numthrds_T27
+      cvt.s32.u32          %s1, %tid.x;                // vect_add.c:53 : $$id_T28
+      .loc                 1  53  0
+      mov.s32              %s3, %s1;                   // vect_add.c:53 : $$I_i_28_T43
+      .loc                 1  53  0
+      setp.ge.s32          %p1, %s1, 10000;            // vect_add.c:53
+      @%p1 bra             $vector_add$ck_L53_1__l64__;// vect_add.c:53
+      .loc                 1  54  0
+      add.s32              %s4, %s1, 1;                // vect_add.c:54
+      cvt.s64.s32          %sd5, %s4;                  // vect_add.c:54
+      mul.lo.s64           %sd1, %sd5, 10;             // vect_add.c:54 : $$SR_E1_T45
+      .loc                 1  55  0
+      mul.lo.s64           %sd2, %sd5, 20;             // vect_add.c:55 : $$SR_E3_T47
+      .loc                 1  54  0
+      mul.lo.s32           %s5, %s2, 10;               // vect_add.c:54
+      cvt.s64.s32          %sd3, %s5;                  // vect_add.c:54 : $$LIS_b0_T48
+      .loc                 1  55  0
+      mul.lo.s32           %s6, %s2, 20;               // vect_add.c:55
+      cvt.s64.s32          %sd4, %s6;                  // vect_add.c:55 : $$LIS_b1_T49
+$vector_add$ck_L53_1__l7__:
+      .loc                 1  54  0
+      cvt.rn.f64.s64       %fd1, %sd1;                 // vect_add.c:54
+      ld.param.s64         %sd6, [$$arg_ptr_acc_vectorA_T10_T52];// vect_add.c:54 : $$arg_ptr_acc_vectorA_T10_T52
+      cvt.s64.s32          %sd7, %s3;                  // vect_add.c:54
+      shl.b64              %bd1, %sd7, 3;              // vect_add.c:54
+      add.s64              %sd8, %sd6, %bd1;           // vect_add.c:54
+      .loc                 1  55  0
+      cvt.rn.f64.s64       %fd2, %sd2;                 // vect_add.c:55
+      .loc                 1  54  0
+      add.s64              %sd1, %sd1, %sd3;           // vect_add.c:54 : $$SR_E1_T45
+      .loc                 1  55  0
+      add.s64              %sd2, %sd2, %sd4;           // vect_add.c:55 : $$SR_E3_T47
+      .loc                 1  53  0
+      add.s32              %s3, %s2, %s3;              // vect_add.c:53 : $$I_i_28_T43
+      setp.lt.s32          %p2, %s3, 10000;            // vect_add.c:53
+      .loc                 1  54  0
+      st.global.f64        [%sd8], %fd1;               // vect_add.c:54 : 0[$$arg_ptr_acc_vectorA_T10_T52,$$I_i_28_T43].L
+      .loc                 1  55  0
+      ld.param.s64         %sd9, [$$arg_ptr_acc_vectorB_T7_T51];// vect_add.c:55 : $$arg_ptr_acc_vectorB_T7_T51
+      add.s64              %sd10, %sd9, %bd1;          // vect_add.c:55
+      st.global.f64        [%sd10], %fd2;              // vect_add.c:55 : 0[$$arg_ptr_acc_vectorB_T7_T51,$$I_i_28_T43].L
+      .loc                 1  53  0
+      @%p2 bra             $vector_add$ck_L53_1__l7__; // vect_add.c:53
+$vector_add$ck_L53_1__l64__:
+      .loc                 1  55  0
+      bar.sync             0;                          // vect_add.c:55
+      exit;
+      } // vector_add$ck_L53_1
+
+
+      .entry vector_add$ck_L59_2(
+               .param .s64 $$arg_ptr_acc_vectorB_T13_T53,
+               .param .s64 $$arg_ptr_acc_vectorA_T16_T54,
+               .param .s64 $$arg_ptr_acc_vectorSum_T19_T55 )
+      {
+      .reg .pred %p<3>;
+      .reg .b64  %bd<2>;
+      .reg .s32  %s<4>;
+      .reg .s64  %sd<8>;
+      .reg .f64  %fd<4>;
+      //
+      .loc                 1  59  0
+      .loc                 1  59  0
+      cvt.s32.u32          %s3, %ntid.x;               // vect_add.c:59 : $$numthrds_T29
+      cvt.s32.u32          %s1, %tid.x;                // vect_add.c:59 : $$id_T30
+      .loc                 1  59  0
+      mov.s32              %s2, %s1;                   // vect_add.c:59 : $$I_i_30_T42
+      .loc                 1  59  0
+      setp.ge.s32          %p1, %s1, 10000;            // vect_add.c:59
+      @%p1 bra             $vector_add$ck_L59_2__l68__;// vect_add.c:59
+$vector_add$ck_L59_2__l15__:
+      .loc                 1  60  0
+      cvt.s64.s32          %sd1, %s2;                  // vect_add.c:60
+      shl.b64              %bd1, %sd1, 3;              // vect_add.c:60
+      ld.param.s64         %sd2, [$$arg_ptr_acc_vectorB_T13_T53];// vect_add.c:60 : $$arg_ptr_acc_vectorB_T13_T53
+      add.s64              %sd3, %sd2, %bd1;           // vect_add.c:60
+      ld.param.s64         %sd4, [$$arg_ptr_acc_vectorA_T16_T54];// vect_add.c:60 : $$arg_ptr_acc_vectorA_T16_T54
+      add.s64              %sd5, %sd4, %bd1;           // vect_add.c:60
+      ld.global.nc.f64     %fd1, [%sd5];               // vect_add.c:60 : 0[$$arg_ptr_acc_vectorA_T16_T54,$$I_i_30_T42,ex].L
+      ld.global.nc.f64     %fd2, [%sd3];               // vect_add.c:60 : 0[$$arg_ptr_acc_vectorB_T13_T53,$$I_i_30_T42,ex].L
+      add.rn.f64           %fd3, %fd1, %fd2;           // vect_add.c:60
+      ld.param.s64         %sd6, [$$arg_ptr_acc_vectorSum_T19_T55];// vect_add.c:60 : $$arg_ptr_acc_vectorSum_T19_T55
+      add.s64              %sd7, %sd6, %bd1;           // vect_add.c:60
+      st.global.f64        [%sd7], %fd3;               // vect_add.c:60 : 0[$$arg_ptr_acc_vectorSum_T19_T55,$$I_i_30_T42].L
+      .loc                 1  59  0
+      add.s32              %s2, %s3, %s2;              // vect_add.c:59 : $$I_i_30_T42
+      setp.lt.s32          %p2, %s2, 10000;            // vect_add.c:59
+      @%p2 bra             $vector_add$ck_L59_2__l15__;// vect_add.c:59
+$vector_add$ck_L59_2__l68__:
+      .loc                 1  60  0
+      bar.sync             0;                          // vect_add.c:60
+      exit;
+      } // vector_add$ck_L59_2
+

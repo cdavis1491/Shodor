@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#PBS -l nodes=3:ppn=32:xe,walltime=00:02:00
+
+pushd ${HOME}/matmul
+make clean && make mpi-openmp
+time aprun -n 3 -N 1 -d 32 ./mpi-openmp -a 1500 -b 1500 -x 1500 -y 1500
+time aprun -n 3 -N 1 -d 1 ./mpi-openmp -a 1500 -b 1500 -x 1500 -y 1500
+

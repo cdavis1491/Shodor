@@ -1,0 +1,37 @@
+/**************************************************************
+ * Filename: mpi_greetings_1.c
+ * Description: This example helps how do you start writing an
+ *      MPI program, there are many ways you can write MPI 
+ *      programs, for example: point-to-point communication or
+ *      collective communication, but the four flags used in this
+ *      program are esential to all.
+ *      All MPI routines starts with MPI_ (MPI_Name_of_routine)
+ * How to compile:
+ *  $ cc mpi_greetings_1.c -o mpi_greetings_1.exe
+ * How to Run on 8 cores:
+ *  $ aprun -n 8 ./mpi_greetings_1.exe
+ **************************************************************/
+#include <stdio.h>      // read man page for printf/fprintf
+#include <mpi.h>        // MPI standard library
+
+int main(int argc, char **argv ){
+    int num_ps;
+    int my_rank;
+    
+    //This is where all begins. MPI_Init() is a must function
+    //in all MPI programs. It establishes the MPI execution env.
+    MPI_Init(&argc, &argv);
+
+    //*_Comm_rank retrives id of every process
+    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
+    //This function gets how many processes are being used
+    //usually same number as passed by -np option.
+    MPI_Comm_size(MPI_COMM_WORLD, &num_ps);
+    //all the PSs will execute printf to print their runk, and team size
+    printf("\tGreetings from PS: %d Living in team of: %d members. \n", my_rank, num_ps);
+    
+    //Good practice is to always end mpi environment when no longer needed.
+    MPI_Finalize();
+    
+    return 0;
+} // END: main()

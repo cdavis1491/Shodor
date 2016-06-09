@@ -1,0 +1,114 @@
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
+# include <mpi.h>
+
+double **matX, **matY, **matZ;
+
+// Functions Declaration
+// allocMem wrapper to allocate memory for each matrix
+void allocMem();
+// freeMem wrapper to take back allocated memory
+void freeMem();
+//print test oid printMat();
+
+#define NUM_ROW 200   //Number of rows in each matrix
+#define NUM_COL 200   //Number of column in each matrix
+
+int main (int argc, char **argv){
+    
+    matX=matY=matZ=NULL;
+
+    allocMem();
+    
+    int i;      // outer loop index variable
+    int j;      // middle loop index variable
+    int k;      //inner loop index variable
+    
+    //double start_t, end_t, compute_t = 0.0;
+    printf ("Compute matrix product Z = X * Y.\n" );
+
+    //Initialize matA basically each element is the sum of index i+j.
+    for ( i = 0; i < NUM_ROW; i++ ){
+        for ( j = 0; j < NUM_COL; j++ ){
+            matX[i][j] = 1;
+        }
+    } //END: outerloop
+    //Initialize matB basically to product of indicies for each element.
+    for ( i = 0; i < NUM_ROW; i++ ){
+        for ( j = 0; j < NUM_COL; j++ )
+        {
+            matY[i][j] = 2;
+        }
+    } //END: outerloop
+    //Start the timer for the comput intense loop
+    //start_t = 10;
+  
+    // Compute matSum = matA * matB.
+    for ( i = 0; i < NUM_ROW; i++ ){
+        for ( j = 0; j < NUM_COL; j++ ){
+            matZ[i][j] = 0.0;
+            for ( k = 0; k < NUM_ROW; k++ ){
+                //Actuall multiplication here.
+                matZ[i][j] = matZ[i][j] + matX[i][k] * matY[k][j];
+            }
+        }
+    } //END: outerloop
+    
+    //how long program spent in last loop
+    //compute_t = start_t - end_t;
+    //printf ("Compute time in seconds = %g\n", compute_t );
+    printMat();
+    //Call function to free memory allocated for each matrix
+    freeMem();
+    return 0;
+} //END: main()
+
+//Allocate Memory to each matrix
+void allocMem(){
+    int i;
+    matX = (double **)malloc(NUM_ROW*sizeof(double *));
+    for (i=0;i<NUM_ROW; i++){
+        matX[i]=(double *)malloc(NUM_COL*sizeof(double));
+    }
+    matY = (double **)malloc(NUM_ROW*sizeof(double *));
+    for (i=0;i<NUM_ROW; i++){
+        matY[i]=(double *)malloc(NUM_COL*sizeof(double));
+    }
+    matZ = (double **)malloc(NUM_ROW*sizeof(double *));
+    for (i=0;i<NUM_ROW; i++){
+        matZ[i]=(double *)malloc(NUM_COL*sizeof(double));
+    }
+    //return 0;
+
+} //END: allocMem() 
+
+void printMat(){
+    int i, j;
+    printf("Computed first 6 rows are:\n");
+    //printf("matSum(i,j)  = %8.5f\n", matSum[10][10] );
+    for(i=0; i < 10; i++){
+        printf(" \n");
+        for(j=0; j< 6; j++){
+            printf("  %.1f ", matZ[i][j] );
+        }
+    }
+    printf(" \n");
+}
+//Free allocated memory to two dimentional arrays
+void freeMem(){
+    int i;
+    for (i=NUM_ROW-1; i>=0; i--){
+        free(matX[i]);
+    }
+    free(matX);
+    for (i=NUM_ROW-1; i>=0; i--){
+        free(matY[i]);
+    }
+    free(matY);
+    for (i=NUM_ROW-1; i>=0; i--){
+        free(matZ[i]);
+    }
+    free(matZ);
+    //return 0;
+} //END: freeMem()

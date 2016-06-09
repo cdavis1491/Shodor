@@ -1,0 +1,26 @@
+To build:
+
+1. Make the serial version: make serial
+2. Make the OpenMP version: make openmp
+3. Make the non-OpenMP MPI version: make mpi-serial
+
+Add DEBUG=1 for debugging statements.
+
+Add PROFILE=1 for gprof output.
+
+Add NON_BW=1 if you are not building on Blue Waters.
+
+To run serially:
+
+./serial -x <m1-cols> -y <m1-rows> -a <m2-cols> -b <m2-rows>
+
+To run with OpenMP:
+
+./openmp -x <m1-cols> -y <m1-rows> -a <m2-cols> -b <m2-rows>
+
+To run with MPI:
+
+aprun -n <num-procs> ./mpi-serial -x <m1-cols> -y <m1-rows> -a <m2-cols> -b <m2-rows>
+
+Add -p if you want matrices to be printed to STDOUT.
+

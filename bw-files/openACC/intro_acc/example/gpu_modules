@@ -1,0 +1,3 @@
+module load craype-accel-nvidia35
+module load cudatoolkit
+module unload darshan
